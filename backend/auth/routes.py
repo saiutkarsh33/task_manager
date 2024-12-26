@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session  # Session manages database transactions
 
 # Import necessary modules and functions from the current package
 from . import models, schemas, auth  # Import models for database tables, schemas for request validation, and auth for authentication functions
-from ..core.database import get_db  # Import get_db to provide a database session to each request
+from .database import get_db  # Import get_db to provide a database session to each request
 
 # Create an APIRouter instance to group and manage authentication-related routes
 router = APIRouter()

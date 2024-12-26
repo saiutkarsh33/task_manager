@@ -1,17 +1,10 @@
-# backend/main.py
 from fastapi import FastAPI
-#from auth.models import models
-from .auth.routes import router as auth_router
-from .task_manager.routes import router as task_router
-from .core.database import engine, Base
-
-# Create database tables
-Base.metadata.create_all(bind=engine)
+from backend.auth import routes as auth_routes  # Triggers backend/auth/__init__.py
+from backend.task_manager import routes as task_routes  # Triggers backend/task_manager/__init__.py
 
 app = FastAPI()
 
-# Include  routes prefixes
-app.include_router(auth_router, prefix="/auth")
-
-app.include_router(task_router, prefix="/tasks")
+# Include routers for each service
+app.include_router(auth_routes.router, prefix="/auth")
+app.include_router(task_routes.router, prefix="/tasks")
 

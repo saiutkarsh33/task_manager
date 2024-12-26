@@ -1,0 +1,6 @@
+
+# Streamlit for creating the frontend UI
+streamlit
+
+# Requests for making HTTP requests from Streamlit to the FastAPI backend
+requests

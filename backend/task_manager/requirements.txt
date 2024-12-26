@@ -1,0 +1,23 @@
+# FastAPI for creating the web API
+fastapi
+
+# Uvicorn for running the FastAPI app
+uvicorn
+
+# SQLAlchemy for ORM and database interactions
+sqlalchemy
+
+# PostgreSQL driver for SQLAlchemy
+psycopg2-binary
+
+# Passlib for password hashing
+passlib[bcrypt]
+
+# Python-Jose for creating and verifying JWT tokens
+python-jose
+
+# Streamlit for creating the frontend UI
+streamlit
+
+# Requests for making HTTP requests from Streamlit to the FastAPI backend
+requests

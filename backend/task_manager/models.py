@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, Index
+from sqlalchemy.ext.declarative import declarative_base, relationship
 from datetime import datetime
 
 Base = declarative_base()
@@ -13,3 +13,11 @@ class Task(Base):
     assigned_user_id = Column(Integer, ForeignKey("users.user_id"))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    deadline = Column(DateTime)
+    # 
+    user = relationship("User", back_populates="tasks")
+
+    __table_args__ = (
+        Index('idx_assigned_user_status', 'assigned_user_id', 'status'),
+        Index('idx_assigned_user_deadline', 'assigned_user_id', 'deadline'),
+    )

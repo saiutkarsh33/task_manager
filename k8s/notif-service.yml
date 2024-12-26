@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notif-deployment
+  labels:
+    app: notif-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notif-service
+  template:
+    metadata:
+      labels:
+        app: notif-service
+    spec:
+      containers:
+        - name: notif-service
+          image: your-dockerhub-username/notif-service:latest
+          ports:
+            - containerPort: 8002
+          env:
+            - name: TASK_MANAGER_URL
+              value: "http://task-manager-service:8001" # service port, not container port
+            - name: REDIS_URL
+              value: "redis://aws-redis-endpoint:6379"
+            - name: RABBITMQ_URL
+              value: "amqps://aws-mq-url"
+            # add env variable for ur AWS RDS Database as well!
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: notif-service
+spec:
+  selector:
+    app: notif-service
+  ports:
+    - protocol: TCP
+      port: 8002
+      targetPort: 8002
+  type: ClusterIP

@@ -8,7 +8,7 @@ from jose import jwt
 from datetime import datetime, timedelta
 
 # Importing configuration values for the secret key, algorithm, and token expiration time
-from ..core.config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
+from .config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
 
 # Initializing CryptContext with bcrypt as the hashing scheme
 # "bcrypt" is a secure, adaptive hashing algorithm that makes it computationally expensive for attackers to guess passwords
